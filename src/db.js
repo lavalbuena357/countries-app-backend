@@ -8,7 +8,7 @@ const sequelize = new Sequelize(`postgres://${env.username}:${env.password}@${en
   pool: {max: 5, min: 0, acquire: 30000, idle: 10000},
   logging: false, 
   native: false, 
-  dialectOptions: {ssl: {require: true, rejectUnauthorized: false}},
+  // dialectOptions: {ssl: {require: true, rejectUnauthorized: false}}, //Deploy
 });
 const basename = path.basename(__filename);
 
