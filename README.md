@@ -1,6 +1,6 @@
 # Countries App - Backend
 
-Desarrollo de la parte del Backend para la aplicación "Countries-App".
+Desarrollo de la parte del Backend para la aplicación "**Countries-App**" deployada en [Heroku](https://www.heroku.com/home).
 
 ## Tecnologías usadas
 ### `Node.Js` `Express.JS` `Sequelize` `PostgresSql`
