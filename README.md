@@ -25,7 +25,8 @@ Obtener infromación sobre países desde la API RESTful deployada en [https://co
 
 La API original de donde consumí todos los datos para crear mi propia API es: [restcountries.eu](https://restcountries.eu/rest/v2/), puede echar un vistazo en su [documentación](https://restcountries.eu/)
 
-## Endpoints de la API hasta ahora (para usar en local y de acuerdo al puerto configurado):
+## Endpoints de la API hasta ahora 
+#### (para usar en local y de acuerdo al puerto configurado):
 Todos los paises con información básica: `http://localhost:3000/countries` \
 Buscar un país por el nombre: `http://localhost:3000/countries?name=nombre-del-país` \
 Filtrar por continente: `http://localhost:3000/countries?continent=nombre-del-continente` \
