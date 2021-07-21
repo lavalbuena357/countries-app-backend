@@ -71,7 +71,7 @@ router.get('/', async (req,  res) => {
       return countries.length > 0 ? res.json(countries) : res.status(404).json({error: 'No search results'})
     }
 
-    countries = await Country.findAndCountAll({
+    countries = await Country.findAll({
       attributes: ['id', 'name', 'flag', 'continent', 'population']
     })
     return res.json(countries)
@@ -84,7 +84,7 @@ router.get('/popasc', async (req, res) => {
   try {
     let countries;
 
-    countries = await Country.findAndCountAll({
+    countries = await Country.findAll({
       order: [
         ['population', 'DESC']
       ],
@@ -100,7 +100,7 @@ router.get('/popdesc', async (req, res) => {
   try {
     let countries;
 
-    countries = await Country.findAndCountAll({
+    countries = await Country.findAll({
       order: [
         ['population', 'ASC']
       ],
@@ -116,7 +116,7 @@ router.get('/sortabc', async (req, res) => {
   try {
     let countries;
 
-    countries = await Country.findAndCountAll({
+    countries = await Country.findAll({
       order: [
         ['name', 'ASC']
       ],
@@ -132,7 +132,7 @@ router.get('/sortcba', async (req, res) => {
   try {
     let countries;
     
-    countries = await Country.findAndCountAll({
+    countries = await Country.findAll({
       order: [
         ['name', 'DESC']
       ],
