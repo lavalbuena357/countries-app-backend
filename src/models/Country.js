@@ -8,25 +8,43 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: false
     },
+    official_name: {
+      type: DataTypes.STRING,
+    },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    flag: {
-      type: DataTypes.STRING,
-      isUrl: true,
-      allowNull: false
-    },
-    continent: {
-      type: DataTypes.STRING,
-      allowNull: false
     },
     capital: {
       type: DataTypes.STRING,
-      allowNull: false
     },
-    subregion: {
+    continent: {
       type: DataTypes.STRING,
+    },
+    flag: {
+      type: DataTypes.TEXT,
+      isUrl: true,
+    },
+    coats_of_arms: {
+      type: DataTypes.TEXT,
+    },
+    map: {
+      type: DataTypes.STRING,
+      isUrl: true,
+    },
+    lat: {
+      type: DataTypes.INTEGER,
+    },
+    lng: {
+      type: DataTypes.INTEGER,
+    },
+    currencies: {
+      type: DataTypes.JSON
+    },
+    languages: {
+      type: DataTypes.JSON
+    },
+    borders: {
+      type: DataTypes.ARRAY(DataTypes.STRING)
     },
     area: {
       type: DataTypes.INTEGER
@@ -34,24 +52,30 @@ module.exports = (sequelize) => {
     population: {
       type: DataTypes.INTEGER
     },
-    demonym: {
-      type: DataTypes.STRING
-    },
     timezones: {
       type: DataTypes.ARRAY(DataTypes.TEXT)
     },
-    borders: {
-      type: DataTypes.ARRAY(DataTypes.STRING)
+    top_level_domain: {
+      type: DataTypes.ARRAY(DataTypes.TEXT)
     },
-    currencies: {
+    un_member: {
+      type: DataTypes.BOOLEAN,
+    },
+    independent: {
+      type: DataTypes.BOOLEAN,
+    },
+    callsign: {
+      type: DataTypes.STRING,
+    },
+    suffixes: {
       type: DataTypes.ARRAY(DataTypes.JSON)
     },
-    languages: {
-      type: DataTypes.ARRAY(DataTypes.JSON)
+    car_plate: {
+      type: DataTypes.STRING,
     },
-    latlng: {
-      type: DataTypes.ARRAY(DataTypes.FLOAT)
-    }
+    car_side: {
+      type: DataTypes.STRING,
+    }, 
   } , {
     timestamps: false
   });

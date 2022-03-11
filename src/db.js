@@ -2,9 +2,9 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
-const env = require('./env.js');
+const { DB_HOST, DB_NAME, DB_USER, DB_PASS } = process.env
 
-const sequelize = new Sequelize(`postgres://${env.username}:${env.password}@${env.host}/${env.database}`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}`, {
   pool: {max: 5, min: 0, acquire: 30000, idle: 10000},
   logging: false, 
   native: false, 
@@ -29,9 +29,10 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Para relacionarlos hacemos un destructuring
-const { Country, Carousel } = sequelize.models;
+const { Country } = sequelize.models;
 
 // Relaciones
+
 
 module.exports = {
   ...sequelize.models,
