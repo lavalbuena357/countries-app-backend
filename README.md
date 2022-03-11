@@ -27,12 +27,12 @@ La API original de donde consumí todos los datos para crear mi propia API es: [
 
 ## Endpoints de la API hasta ahora 
 #### (para usar en local y de acuerdo al puerto configurado):
-Todos los paises con información básica: `http://localhost:3000/countries` \
-Buscar un país por el nombre: `http://localhost:3000/countries?name=nombre-del-país` \
-Filtrar por continente: `http://localhost:3000/countries?continent=nombre-del-continente` \
-Ver información detallada de un país: `http://localhost:3000/countries/id-del-país`
+Todos los paises con información básica: `http://localhost:3000/api/v1/all` \
+Buscar un país por el nombre: `http://localhost:3000/api/all?name=nombre-del-país` \
+Paginado: `http://localhost:3000/api/v1/all?page=pagina&limit=rango` \
+Ver información detallada de un país: `http://localhost:3000/api/v1/detail/id-del-país`
 
-*Nota: También tiene algunos ordenamientos que se pueden usar para la aplicación tales como ordén alfabético de países o por población ascendente y desencente*
+*Nota: También tiene algunos ordenamientos que se pueden usar para la aplicación tales como ordén alfabético de países*
 
 ### Frontend
 Dejo en el siguiente enlace el [repositorio del Frontend](https://github.com/lavalbuena357/countries-app-frontend) de esta aplicación [**Countries App**](https://countriesinfo-app.web.app/), desarrollado bajo `React.Js` y usando `Redux` para el manejo de los estado y `css modules` para los estilos.
