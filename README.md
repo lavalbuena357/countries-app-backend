@@ -7,9 +7,10 @@ Desarrollo de la parte del Backend para la aplicación "**Countries-App**" deplo
 
 ## Instalación y scripts disponibles
 - Forkear el respositorio y clonar en local
-- Crear un base de datos manualmente en Postgres
-- En el repositorio local, crear dentro de la carpeta `src` un archivo llamado `env.js` o bien cambiar la configuración y crear un archivo `.env` con los datos requeridos por Sequelize para la conexión.
+- Crear un base de datos local en Postgres
+- En el repositorio local, crear dentro de la carpeta del proyecto el archivo `.env` con los datos requeridos por Sequelize para la conexión.
 - Tener en cuenta los siguientes datos para conectar con `db.js` en la carpeta `src`: 
+  - Puerto
   - Nombre de usuario de la base datos
   - Contraseña
   - Host
@@ -18,12 +19,12 @@ Desarrollo de la parte del Backend para la aplicación "**Countries-App**" deplo
 - En la carpeta raíz, en el archivo `index.js` tener en cuenta configurar `force: true` o `force: false` de acuerdo a la etapa de desarrollo o producción
 - Los modelos ya están configurados por defecto, pero se puede echar un vistazo en la carpeta `models` y realizar los cambios que considere convenientes
 - Las rutas y peticiones ya están configuradas en la carpeta `routes`, pero se puede echar un vistazo y realizar los cambios que considere convenientes para usted
-- Ejecutar el comando `npm start` para iniciar la API y dirigirse en el navegador a `http://localhost:3000/countries` para correr en local
+- Ejecutar el comando `npm start` para iniciar la API y dirigirse en el navegador a `http://localhost:3000/api/v1/all` para correr en local
 
 ## Deploy
 Obtener infromación sobre países desde la API RESTful deployada en [https://countriesinfoapp.herokuapp.com/countries/](https://countriesinfoapp.herokuapp.com/countries/) 
 
-La API original de donde consumí todos los datos para crear mi propia API es: [restcountries.eu](https://restcountries.eu/rest/v2/), puede echar un vistazo en su [documentación](https://restcountries.eu/)
+La API original de donde consumí todos los datos para crear mi propia API es: [restcountries.eu](https://restcountries.com/#api-endpoints-v3-all), puede echar un vistazo en su [documentación](https://restcountries.com/#api-endpoints-v3-all)
 
 ## Endpoints de la API hasta ahora 
 #### (para usar en local y de acuerdo al puerto configurado):
