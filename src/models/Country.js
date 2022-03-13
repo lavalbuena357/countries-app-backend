@@ -38,10 +38,10 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
     },
     currencies: {
-      type: DataTypes.JSON
+      type: DataTypes.ARRAY(DataTypes.JSON)
     },
     languages: {
-      type: DataTypes.JSON
+      type: DataTypes.ARRAY(DataTypes.JSON)
     },
     borders: {
       type: DataTypes.ARRAY(DataTypes.STRING)
