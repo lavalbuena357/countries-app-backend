@@ -22,6 +22,24 @@ router.use(express.json());
 //     const count = await Country.count()
 //       if(!count) {
 //         const api = await axios.get(process.env.API_URL);
+
+//         //se añadieron las funciones para organizar la informacion que viene de la api original para ser mas flexible
+//         function orderCurr(curr) {
+//           let singleObjects = []
+//           for (let item in curr) {
+//             singleObjects[singleObjects.length] = {id: item, name: curr[item].name, symbol: curr[item].symbol}
+//           }
+//           return singleObjects
+//         }
+//         function orderLang(lang) {
+//           let singleObjects = []
+//           for (let item in lang) {
+//             singleObjects[singleObjects.length] = {id: item, name: lang[item]}
+//           }
+//           return singleObjects
+//         }
+//         //fin funciones
+
 //         await api.data.forEach(el => Country.findOrCreate({
 //           where: {
 //             id: el.cca3,
@@ -34,8 +52,8 @@ router.use(express.json());
 //             map: el.maps.openStreetMaps,
 //             lat: el.latlng[0],
 //             lng: el.latlng[1],
-//             currencies: el.currencies && el.currencies || {},
-//             languages: el.languages && el.languages || {},
+//             currencies: el.currencies && orderCurr(el.currencies) || [],
+//             languages: el.languages && orderLang(el.languages) || [],
 //             borders: el.borders && el.borders || [],
 //             area: el.area,
 //             population: el.population,
@@ -59,21 +77,21 @@ router.get('/all', async (req,  res) => {
   const { name, page, limit } = req.query
 
   try {
-    let countries;
+    let countries;    
 
     //Search by name
     if(name) {
       let nameArr = name.split('%20');
       let nameS = nameArr.map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(' ');
       countries = await Country.findAll({
-        where: {
+        where: { 
           name: {
-            [Op.like]: `%${nameS}%`
+            [Op.like]: `${nameS}%`
           }
         },
         attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
       })
-      return countries.length > 0 ? res.json(countries) : res.status(404).json({error: 'No search results'})
+      return countries.length > 0 ? res.json({count: countries.length, countries}) : res.status(404).json({error: 'No search results'})
     }
 
     //pagination
@@ -92,7 +110,8 @@ router.get('/all', async (req,  res) => {
     return res.json({count: countries.length, countries})
   } catch(err) {console.log(err)}
 })
-// //sort name abc
+
+//sort name abc
 router.get('/sortabc', async (req, res) => {
 
   try {
@@ -103,7 +122,7 @@ router.get('/sortabc', async (req, res) => {
         ['name', 'ASC']
       ],
     })
-    return res.json(countries)
+    return res.json({count: countries.length, countries})
   } catch(err) {console.log(err)}
 })
 
@@ -118,7 +137,7 @@ router.get('/sortcba', async (req, res) => {
         ['name', 'DESC']
       ],
     })
-    return res.json(countries)
+    return res.json({count: countries.length, countries})
   } catch(err) {console.log(err)}
 })
 
@@ -128,8 +147,8 @@ router.get('/detail/:idCountry', async (req, res) => {
   const id = idCountry.toUpperCase();
 
   try {
-    let countries = await Country.findByPk(id);
-    return countries ? res.json(countries) : res.status(404).json({error: 'Invalid Country Code'})
+    let country = await Country.findByPk(id);
+    return countries ? res.json({country}) : res.status(404).json({error: 'Invalid Country Code'})
   } catch(err) {console.log(err)}
 });
 
