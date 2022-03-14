@@ -22,7 +22,7 @@ Desarrollo de la parte del Backend para la aplicación "**Countries-App**" deplo
 - Ejecutar el comando `npm start` para iniciar la API y dirigirse en el navegador a `http://localhost:3000/api/v1/all` para correr en local
 
 ## Deploy
-Obtener infromación sobre países desde la API RESTful deployada en [https://countriesinfoapp.herokuapp.com/countries/](https://countriesinfoapp.herokuapp.com/countries/) 
+Obtener infromación sobre países desde la API RESTful deployada en [https://countriesinfoapp.herokuapp.com/api/v1/all](https://countriesinfoapp.herokuapp.com/api/v1/all) 
 
 La API original de donde consumí todos los datos para crear mi propia API es: [restcountries.eu](https://restcountries.com/#api-endpoints-v3-all), puede echar un vistazo en su [documentación](https://restcountries.com/#api-endpoints-v3-all)
 
