@@ -36,7 +36,5 @@ Ordenar alfabéticamente ascendente: `http://localhost:3001/api/v1/sortabc` \
 Ordenar alfabéticamente descendente: `http://localhost:3001/api/v1/sortcba` \
 Ver información detallada de un país: `http://localhost:3001/api/v1/detail/id-del-país`
 
-*Nota: También tiene algunos ordenamientos que se pueden usar para la aplicación tales como ordén alfabético de países*
-
 ### Frontend
 Dejo en el siguiente enlace el [repositorio del Frontend](https://github.com/lavalbuena357/countries-app-frontend) de esta aplicación [**Countries App**](https://countriesinfo-app.web.app/), desarrollado bajo `React.Js` y usando `Redux` para el manejo de los estado y `css modules` para los estilos.
