@@ -78,6 +78,8 @@ router.get('/all', async (req,  res) => {
 
   try {
     let countries;   
+    const start = (page && limit) ? (page -1) * limit : 0
+    const end = (page && limit) ? page * limit : 20
 
     //filtrados
     if(currency || lang || region) {
@@ -108,70 +110,60 @@ router.get('/all', async (req,  res) => {
       }
 
       countries = filter
-      return countries.length > 0 ? res.json({count: countries.length, countries: countries}) : res.status(404).json({error: 'No search results'})
+      return countries.length > 0 ? res.json({page: parseInt(page) || 1, limit: parseInt(limit) || 20, total: countries.length, countries: countries.slice(start, end) }) : res.status(404).json({error: 'No search results'})
     }
 
     //Search by name
-    if(name) {
-      let nameArr = name.split('%20');
-      let nameS = nameArr.map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(' ');
-      countries = await Country.findAll({
-        where: { 
-          name: {
-            [Op.like]: `${nameS}%`
-          }
-        },
-        attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
-      })
-      return countries.length > 0 ? res.json({count: countries.length, countries}) : res.status(404).json({error: 'No search results'})
-    }
-
-    //pagination
-    if(page) {
-      const start = (page -1) * limit
-      const end = page * limit
-      countries = await Country.findAll({
-        attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
-      })
-      return res.json({page, items: `${start} to ${end}`, total: countries.length, countries: countries.slice(start, end) })
-    }
+    // if(name) {
+    //   let nameArr = name.split('%20');
+    //   let nameS = nameArr.map(el => el.charAt(0).toUpperCase() + el.slice(1)).join(' ');
+    //   countries = await Country.findAll({
+    //     where: { 
+    //       name: {
+    //         [Op.like]: `${nameS}%`
+    //       }
+    //     },
+    //     attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
+    //   })
+    //   return countries.length > 0 ? res.json({page: parseInt(page) || 1, limit: parseInt(limit) || 20, total: countries.length, countries: countries.slice(start, end) }) : res.status(404).json({error: 'No search results'})
+    // }
 
     countries = await Country.findAll({
       attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
     })
-    return res.json({count: countries.length, countries})
+    return res.json({page: parseInt(page) || 1, limit: parseInt(limit) || 20, total: countries.length, countries: countries.slice(start, end) })
   } catch(err) {console.log(err)}
 })
 
-//sort name abc
-router.get('/sortabc', async (req, res) => {
+// //sort name abc
+// router.get('/sortabc', async (req, res) => {
 
-  try {
-    let countries;
+//   try {
+//     let countries;
 
-    countries = await Country.findAll({
-      order: [
-        ['name', 'ASC']
-      ],
-    })
-    return res.json({count: countries.length, countries})
-  } catch(err) {console.log(err)}
-})
+//     countries = await Country.findAll({
+//       order: [
+//         ['name', 'ASC']
+//       ],
+//     })
+//     return res.json({count: countries.length, countries})
+//   } catch(err) {console.log(err)}
+// })
 
-//sort name cba
-router.get('/sortcba', async (req, res) => {
+// //sort name cba
+// router.get('/sortcba', async (req, res) => {
 
-  try {
-    let countries;
+//   try {
+//     let countries;
     
-    countries = await Country.findAll({
-      order: [
-        ['name', 'DESC']
-      ],
-    })
-    return res.json({count: countries.length, countries})
-  } catch(err) {console.log(err)}
-})
+//     countries = await Country.findAll({
+//       order: [
+//         ['name', 'DESC']
+//       ],
+//     })
+//     return res.json({count: countries.length, countries})
+//   } catch(err) {console.log(err)}
+// })
 
 //find by id detail
 router.get('/detail/:idCountry', async (req, res) => {
