@@ -28,10 +28,13 @@ La API original de donde consumí todos los datos para crear mi propia API es: [
 
 ## Endpoints de la API hasta ahora 
 #### (para usar en local y de acuerdo al puerto configurado):
-Todos los paises con información básica: `http://localhost:3000/api/v1/all` \
-Buscar un país por el nombre: `http://localhost:3000/api/all?name=nombre-del-país` \
-Paginado: `http://localhost:3000/api/v1/all?page=pagina&limit=rango` \
-Ver información detallada de un país: `http://localhost:3000/api/v1/detail/id-del-país`
+Todos los paises con información básica: `http://localhost:3001/api/v1/all` \
+Buscar un país por el nombre: `http://localhost:3001/api/all?name=nombre-del-país` \
+Paginado: `http://localhost:3001/api/v1/all?page=pagina&limit=rango` \
+Filtrado: `http://localhost:3001/api/v1/all?currency=moneda&lang=idioma&region=continente` \
+Ordenar alfabéticamente ascendente: `http://localhost:3001/api/v1/sortabc` \
+Ordenar alfabéticamente descendente: `http://localhost:3001/api/v1/sortcba` \
+Ver información detallada de un país: `http://localhost:3001/api/v1/detail/id-del-país`
 
 *Nota: También tiene algunos ordenamientos que se pueden usar para la aplicación tales como ordén alfabético de países*
 
