@@ -74,10 +74,42 @@ router.use(express.json());
 //routes
 router.get('/all', async (req,  res) => {
 
-  const { name, page, limit } = req.query
+  const { name, page, limit, currency, lang, region } = req.query
 
   try {
-    let countries;    
+    let countries;   
+
+    //filtrados
+    if(currency || lang || region) {
+      countries = await Country.findAll({
+        attributes: ["id", "name", "continent", "flag", "coats_of_arms", "currencies", "languages"]
+      })
+
+      let filter = []
+
+      if(currency && lang && region) {
+        filter = countries.filter(el => el.currencies.filter(el => el.id === currency).length > 0 
+          && el.languages.filter(el => el.id === lang).length > 0 && el.continent === region)
+      } else if(currency && lang) {
+        filter = countries.filter(el => el.currencies.filter(el => el.id === currency).length > 0 
+          && el.languages.filter(el => el.id === lang).length > 0)
+      } else if(currency && region) {
+        filter = countries.filter(el => el.currencies.filter(el => el.id === currency).length > 0 
+          && el.continent === region)
+      } else if(region && lang) {
+        filter = countries.filter(el => el.languages.filter(el => el.id === lang).length > 0 
+          && el.continent === region)
+      } else if(currency) {
+        filter = countries.filter(el => el.currencies.filter(el => el.id === currency).length > 0)
+      } else if(lang) {
+        filter = countries.filter(el => el.languages.filter(el => el.id === lang).length > 0)
+      } else {
+        filter = countries.filter(el => el.continent === region)
+      }
+
+      countries = filter
+      return countries.length > 0 ? res.json({count: countries.length, countries: countries}) : res.status(404).json({error: 'No search results'})
+    }
 
     //Search by name
     if(name) {
