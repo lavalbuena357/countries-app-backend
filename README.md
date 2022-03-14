@@ -3,7 +3,7 @@
 Desarrollo de la parte del Backend para la aplicación "**Countries-App**" deployada en [Heroku](https://www.heroku.com/home).
 
 ## Tecnologías usadas
-### `Node.Js` `Express.JS` `Sequelize` `PostgresSql`
+### `Node.Js` `Express.JS` `Sequelize` `PostgreSql`
 
 ## Instalación y scripts disponibles
 - Forkear el respositorio y clonar en local
